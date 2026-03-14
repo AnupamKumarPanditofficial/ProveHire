@@ -24,8 +24,20 @@ connectDB();
 
 const app = express();
 
+// Basic Health Check (Public) - TOP LEVEL
+app.get('/api/health', (req, res) => {
+    res.status(200).json({ 
+        status: 'active', 
+        version: '1.0.2',
+        deployedAt: '2026-03-14T13:30:00Z',
+        timestamp: new Date() 
+    });
+});
+
 // Set security HTTP headers
-app.use(helmet());
+app.use(helmet({
+    crossOriginResourcePolicy: false, // Allow cross-origin images/resources
+}));
 
 // Prevent XSS attacks
 app.use((req, res, next) => {
@@ -61,10 +73,7 @@ app.use(cors({
     credentials: true,
 }));
 
-// Basic Health Check (Public)
-app.get('/api/health', (req, res) => {
-    res.status(200).json({ status: 'active', timestamp: new Date() });
-});
+
 
 // Stripe Webhook (MUST be before express.json)
 app.use('/api/payments/webhook', express.raw({ type: 'application/json' }), handleWebhook);
@@ -85,7 +94,11 @@ app.use('/api/payments', paymentRoutes);
 
 // Base route
 app.get('/', (req, res) => {
-    res.send('ProvaHire API is running...');
+    res.json({
+        message: 'ProvaHire API is running...',
+        version: '1.0.2',
+        deployedAt: '2026-03-14T13:30:00Z'
+    });
 });
 
 const PORT = process.env.PORT || 5000;
