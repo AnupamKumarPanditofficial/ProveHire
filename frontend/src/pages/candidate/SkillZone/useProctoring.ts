@@ -22,7 +22,7 @@ interface ProctoringState {
 const GLOBAL_COOLDOWN_MS = 8000;
 const MODAL_DISPLAY_MS = 6000;
 const AUDIO_THRESHOLD = 30; // 0-255 scale
-const EYE_GAZE_THRESHOLD = 0.7; // Example ratio threshold
+
 
 export const useProctoring = (videoRef: React.RefObject<HTMLVideoElement | null>) => {
     const [state, setState] = useState<ProctoringState>({

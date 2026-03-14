@@ -1,7 +1,7 @@
 import { getAuthUser } from '../utils/profileStore';
 import { API_BASE_URL } from '../globalConfig';
 
-const API_BASE = API_BASE_URL;
+
 
 // ─── Auth Token ───────────────────────────────────────────────────────────────
 const getToken = (): string | null => {

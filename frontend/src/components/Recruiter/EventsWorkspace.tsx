@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 import { useEffect, useState } from 'react';
 import { Globe, Calendar, ArrowRight, Sparkles, MapPin } from 'lucide-react';
