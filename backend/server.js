@@ -39,23 +39,32 @@ app.use((req, res, next) => {
 app.use(hpp());
 
 // Middleware
-const allowedOrigins = process.env.ALLOWED_ORIGINS
-    ? process.env.ALLOWED_ORIGINS.split(',')
-    : ['http://localhost:5173', 'http://localhost:3000', 'https://provahire.vercel.app'];
+const baseAllowedOrigins = ['http://localhost:5173', 'http://localhost:3000', 'https://provahire.vercel.app'];
+const envOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : [];
+const allowedOrigins = [...baseAllowedOrigins, ...envOrigins];
 
 app.use(cors({
     origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps or curl)
         if (!origin) return callback(null, true);
-        // Allow localhost and any Vercel subdomain for this project
+        
         const isVercel = origin.endsWith('.vercel.app');
-        if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.includes('*') || isVercel) {
+        const isWhitelisted = allowedOrigins.includes(origin) || allowedOrigins.includes('*');
+        
+        if (isWhitelisted || isVercel) {
             callback(null, true);
         } else {
+            console.warn(`CORS blocked for origin: ${origin}`);
             callback(new Error('Not allowed by CORS'));
         }
     },
     credentials: true,
 }));
+
+// Basic Health Check (Public)
+app.get('/api/health', (req, res) => {
+    res.status(200).json({ status: 'active', timestamp: new Date() });
+});
 
 // Stripe Webhook (MUST be before express.json)
 app.use('/api/payments/webhook', express.raw({ type: 'application/json' }), handleWebhook);
