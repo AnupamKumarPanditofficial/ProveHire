@@ -1,9 +1,9 @@
-﻿import { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { Lock, Eye, EyeOff, ShieldAlert, Layers } from 'lucide-react';
 import './AdminLogin.css';
 
-const ADMIN_ID = 'ProvaHire';
-const ADMIN_KEY = 'Hire123';
+const ADMIN_ID = import.meta.env.VITE_ADMIN_ID || 'ProvaHire';
+const ADMIN_KEY = import.meta.env.VITE_ADMIN_KEY || 'Hire123';
 
 const AdminLogin = () => {
     const [adminId, setAdminId] = useState('');

@@ -1,6 +1,11 @@
 const User = require('../models/User');
 const Recruiter = require('../models/Recruiter');
 const Event = require('../models/Event');
+const Job = require('../models/Job');
+const Application = require('../models/Application');
+const AuditLog = require('../models/AuditLog');
+const OTP = require('../models/OTP');
+const PasswordResetToken = require('../models/PasswordResetToken');
 
 const ADMIN_PASSKEY = 'Hire123';
 
@@ -104,13 +109,51 @@ const deleteUser = async (req, res) => {
         const { id } = req.params;
         const { role } = req.query;
 
-        if (role === 'recruiter') {
-            await Recruiter.findByIdAndDelete(id);
-        } else {
-            await User.findByIdAndDelete(id);
+        console.log(`--- ADMIN DELETE REQUEST: ID=${id}, ROLE=${role} ---`);
+
+        // 1. Find user in both collections to get email and ensure they exist
+        let userToDelete = await User.findById(id);
+        let recruiterToDelete = await Recruiter.findById(id);
+
+        const email = userToDelete?.email || recruiterToDelete?.email;
+
+        if (!userToDelete && !recruiterToDelete) {
+            return res.status(404).json({ message: 'User not found' });
         }
 
-        res.json({ message: 'User deleted successfully' });
+        // 2. Perform cascading deletion based on role and existence
+        const deletionPromises = [];
+
+        // Always remove AuditLogs associated with this ID
+        deletionPromises.push(AuditLog.deleteMany({ userId: id }));
+
+        // Always remove OTPs and tokens associated with the email
+        if (email) {
+            deletionPromises.push(OTP.deleteMany({ email }));
+            deletionPromises.push(PasswordResetToken.deleteMany({ email }));
+        }
+
+        if (role === 'recruiter' || recruiterToDelete) {
+            console.log('Cleaning up recruiter data...');
+            // Find jobs by this recruiter to clean up applications to them
+            const jobs = await Job.find({ recruiter: id });
+            const jobIds = jobs.map(j => j._id);
+
+            deletionPromises.push(Job.deleteMany({ recruiter: id }));
+            deletionPromises.push(Application.deleteMany({ job: { $in: jobIds } }));
+            deletionPromises.push(Recruiter.findByIdAndDelete(id));
+        }
+
+        if (role === 'candidate' || userToDelete) {
+            console.log('Cleaning up candidate data...');
+            deletionPromises.push(Application.deleteMany({ candidate: id }));
+            deletionPromises.push(User.findByIdAndDelete(id));
+        }
+
+        await Promise.all(deletionPromises);
+
+        console.log('Successfully performed cascading deletion.');
+        res.json({ message: 'User and all related data deleted successfully' });
     } catch (err) {
         console.error('Admin delete error:', err);
         res.status(500).json({ message: 'Server error deleting user' });

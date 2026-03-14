@@ -29,6 +29,7 @@ import Assessment from './pages/candidate/SkillZone/Assessment';
 import Result from './pages/candidate/SkillZone/Result';
 import CandidateProfile from './pages/CandidateProfile';
 import AdminDashboard from './pages/AdminDashboard';
+import AdminLogin from './pages/AdminLogin';
 import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentCancel from './pages/PaymentCancel';
 
@@ -165,6 +166,7 @@ function App() {
   if (currentPage === 'login') return <Login />;
   if (currentPage === 'forgot-password') return <ForgotPassword />;
   if (currentPage === 'confirmation') return <ConfirmationPage />;
+  if (currentPage === 'admin-login') return <AdminLogin />;
   if (currentPage === 'recruiter-onboarding') return <RecruiterOnboarding />;
   if (currentPage === 'recruiter-dashboard') return <RecruiterDashboard />;
 

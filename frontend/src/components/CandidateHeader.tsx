@@ -1,6 +1,7 @@
-﻿import { Bell, Layers, Crown } from 'lucide-react';
+import { Bell, Layers, Crown } from 'lucide-react';
 import { getProfile } from '../utils/profileStore';
 import { hasFeature } from '../utils/planUtils';
+import { useRef, useCallback } from 'react';
 import './CandidateHeader.css';
 
 export type CandidateActivePage =
@@ -30,10 +31,26 @@ const CandidateHeader = ({ activePage, onNavigate }: CandidateHeaderProps) => {
         ? profile.name.split(' ').map(n => n.charAt(0)).join('').substring(0, 2).toUpperCase()
         : 'U'; // Default fallback
 
+    // ── Secret 10-click admin access ──────────────────────────
+    const clickCount = useRef(0);
+    const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    const handleLogoClick = useCallback(() => {
+        onNavigate('dashboard');
+        clickCount.current += 1;
+        if (resetTimer.current) clearTimeout(resetTimer.current);
+        resetTimer.current = setTimeout(() => { clickCount.current = 0; }, 3000);
+        if (clickCount.current >= 10) {
+            clickCount.current = 0;
+            window.location.hash = '#/admin/login';
+            window.dispatchEvent(new HashChangeEvent('hashchange'));
+        }
+    }, [onNavigate]);
+
     return (
         <header className="ch-nav">
             {/* Logo */}
-            <div className="ch-logo" onClick={() => onNavigate('dashboard')} role="button" tabIndex={0}>
+            <div className="ch-logo" onClick={handleLogoClick} role="button" tabIndex={0}>
                 <div className="ch-logo-icon"><Layers size={17} /></div>
                 <span className="ch-logo-text">ProvaHire</span>
                 {hasFeature(profile, 'proTag') && (
