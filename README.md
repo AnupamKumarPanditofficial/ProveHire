@@ -11,7 +11,7 @@
 [![Gemini AI](https://img.shields.io/badge/Google-Gemini_2.5_Pro-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
 [![Vite](https://img.shields.io/badge/Vite-8.0-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
 
-> **Live Demo:** 🚀 [https://provahire.vercel.app](https://provahire.vercel.app) _(Coming Soon — Backend deployment in progress)_
+> **Live Demo:** 🚀 [https://provahire.vercel.app](https://provahire.vercel.app) _backend -> https://provehire.onrender.com
 
 </div>
 
@@ -137,102 +137,6 @@ ProvaHire addresses **all six** problems in a single, integrated platform.
 | **Webcam API** | Real-time frame capture for face presence detection |
 
 ---
-
-## 🏗 Architecture Diagram
-
-```mermaid
-graph TB
-    subgraph "Client Layer"
-        LP[Landing Page]
-        CA[Candidate App]
-        RA[Recruiter App]
-        AA[Admin App]
-    end
-
-    subgraph "Frontend - React 19 + TypeScript + Vite"
-        AR[Hash-based Router<br/>App.tsx]
-        SZ[Skill Zone<br/>Assessment Module]
-        GS[geminiAssessment.ts<br/>AstraEval Engine]
-        PS[profileStore<br/>Auth State]
-    end
-
-    subgraph "Backend - Express.js REST API"
-        direction TB
-        SEC[Security Middleware<br/>Helmet · XSS · HPP · Rate Limit]
-        
-        subgraph "Route Handlers"
-            AR2[/api/auth]
-            RR[/api/recruiter-auth]
-            CR[/api/candidate]
-            REC[/api/recruiter]
-            ADM[/api/admin]
-            GEM[/api/gemini]
-            EVT[/api/events]
-        end
-
-        subgraph "Controllers"
-            AC[authController<br/>OTP · Login · Reset · Refresh]
-            RAC[recruiterAuthController<br/>Register · Onboard · Refresh]
-            RC[recruiterController<br/>Jobs · Pipeline · Stats]
-            ADC[adminController<br/>Users · Block · Events]
-            GC[geminiController<br/>Gemini 2.5 Pro Proxy]
-        end
-    end
-
-    subgraph "Database - MongoDB Atlas"
-        U[(User Collection)]
-        RDB[(Recruiter Collection)]
-        J[(Job Collection)]
-        APP[(Application Collection)]
-        OTP2[(OTP Collection<br/>TTL: 5 min)]
-        AL[(AuditLog Collection)]
-        EV[(Event Collection)]
-    end
-
-    subgraph "External Services"
-        GMN[Google Gemini 2.5 Pro<br/>generativelanguage.googleapis.com]
-        MAIL[Nodemailer<br/>SMTP Email Service]
-    end
-
-    LP --> AR
-    CA --> AR
-    RA --> AR
-    AA --> AR
-    AR --> SZ
-    AR --> GS
-    SZ --> GS
-    GS --> GEM
-
-    AR2 --> AC
-    RR --> RAC
-    CR --> AC
-    REC --> RC
-    ADM --> ADC
-    GEM --> GC
-
-    AC --> U
-    AC --> OTP2
-    AC --> AL
-    RAC --> RDB
-    RAC --> OTP2
-    RC --> J
-    RC --> APP
-    RC --> U
-    ADC --> U
-    ADC --> RDB
-    ADC --> EV
-    GC --> GMN
-    AC --> MAIL
-    RAC --> MAIL
-
-    SEC --> AR2
-    SEC --> RR
-    SEC --> CR
-    SEC --> REC
-    SEC --> ADM
-    SEC --> GEM
-    SEC --> EVT
-```
 
 ---
 
