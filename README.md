@@ -89,11 +89,11 @@ ProvaHire addresses **all six** problems in a single, integrated platform.
 
 | Skill Zone Assessment | Recruiter Job Pipeline |
 |---|---|
-| ![Skill Zone](./screenshots/skill_zone.png) | ![Recruiter Dashboard](./screenshots/recruiter_dashboard.png) |
+| ![Skill Zone](./screenshots/skill_zone.png) | 
 
 | Admin Panel | OTP Verification |
 |---|---|
-| ![Admin Panel](./screenshots/admin.png) | ![OTP](./screenshots/otp.png) |
+| ![Admin Panel](./screenshots/admin.png) | 
 
 > 📸 _Add screenshots to a `/screenshots` folder in the project root to display them here._
 
