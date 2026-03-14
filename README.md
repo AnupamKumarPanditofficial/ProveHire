@@ -450,7 +450,7 @@ npm run dev
 ### 4. Open in Browser
 
 Navigate to `http://localhost:5173` — you'll see the ProvaHire landing page.
-
+click 10-times on logo and access Admin Panel
 ---
 
 ## 🔑 Environment Variables
@@ -481,6 +481,8 @@ EMAIL_PASS=your_gmail_app_password
 ### Frontend (`frontend/.env`)
 ```env
 VITE_API_BASE_URL=http://localhost:5000
+VITE_ADMIN_ID=ProvaHire
+VITE_ADMIN_KEY=Hire123,  Use adn test this key for admin
 ```
 
 ---
