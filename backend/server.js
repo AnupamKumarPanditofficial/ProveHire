@@ -46,7 +46,9 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS
 app.use(cors({
     origin: (origin, callback) => {
         if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.includes('*')) {
+        // Allow localhost and any Vercel subdomain for this project
+        const isVercel = origin.endsWith('.vercel.app');
+        if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.includes('*') || isVercel) {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
