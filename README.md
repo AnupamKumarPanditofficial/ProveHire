@@ -1,4 +1,4 @@
-﻿<div align="center">
+<div align="center">
 
 <h1>🔷 ProvaHire</h1>
 
@@ -110,6 +110,8 @@ ProvaHire addresses **all six** problems in a single, integrated platform.
 | **@tanstack/react-table** | 8.21 | Advanced data tables (Admin) |
 | **pdfjs-dist** | 5.4 | Client-side PDF parsing for resume upload |
 | **mammoth** | 1.11 | DOCX parsing for resume upload |
+| **TensorFlow.js** | 4.22 | Real-time AI processing in browser |
+| **MediaPipe FaceMesh** | — | High-fidelity face & iris landmark tracking |
 | **Vanilla CSS** | — | All styles (no utility framework) |
 
 ### Backend
@@ -130,9 +132,10 @@ ProvaHire addresses **all six** problems in a single, integrated platform.
 ### AI / Intelligence Layer
 | Technology | Purpose |
 |---|---|
-| **Google Gemini 2.5 Pro** | Question generation, assessment evaluation, resume scoring, face proctoring |
+| **Google Gemini 2.5 Pro** | Question generation, assessment evaluation, resume scoring, face proctoring verification |
 | **AstraEval Engine** | Custom batched question generation with JSON repair + retry logic |
-| **Webcam API** | Real-time frame capture for face presence detection |
+| **TensorFlow Visual Engine** | Real-time on-device face detection, multi-face tracking, and gaze analysis |
+| **Web Audio API Engine** | Real-time ambient noise monitoring and dynamic EQ visualization |
 
 ---
 
@@ -294,6 +297,34 @@ Application {
   appliedAt
 }
 ```
+
+---
+
+## 🛡 AI Proctoring & Anti-Cheat System
+
+ProvaHire features a multi-layered, **Cheating-Free Exam Mode** that monitors candidates in real-time using on-device machine learning and browser environment control.
+
+### 🎥 Visual Monitoring (TensorFlow.js + MediaPipe)
+Using **MediaPipe FaceMesh**, the platform tracks 468+ facial landmarks directly in the browser with **Zero Server Lag**:
+- **Presence Detection**: Ensures the candidate is present throughout the exam.
+- **Face Verification**: Detects if more than one person is visible in the frame.
+- **Gaze Tracking (Iris Detection)**: Monitors iris movement to detect if the candidate is looking at external resources or another screen.
+
+### 🎙 Audio Intelligence (Web Audio API)
+A real-time audio engine analyzes ambient noise levels:
+- **Dynamic EQ**: Provides visual feedback to the candidate about their surrounding noise.
+- **Conversation Detection**: Logs violations if high-decibel activity or speech is detected.
+
+### 💻 Browser Lockdown (Environment API)
+The exam executes in a controlled "Active Mode" state:
+- **Tab Switching Detection**: Immediate violation log if the tab is switched or minimized.
+- **Window Blur Control**: Detects if the browser window loses focus (e.g., opening another app).
+- **Fullscreen Enforcement**: Candidates must stay in fullscreen; exiting triggers a warning.
+
+### 🤖 Hybrid AI Verification
+For maximum integrity, a **Dual-Layer Check** is implemented:
+1. **Primary**: Fast, real-time tracking via **TensorFlow.js** on the client side.
+2. **Secondary**: Periodic frame analysis (every 30s) sent to **Gemini Vision** for high-integrity audit trails.
 
 ---
 
