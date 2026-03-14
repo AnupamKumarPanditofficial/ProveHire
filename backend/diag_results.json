@@ -1,0 +1,47 @@
+{
+  "dbName": "test",
+  "counts": {
+    "users": 0,
+    "recruiters": 1
+  },
+  "users": [],
+  "recruiters": [
+    {
+      "_id": "69a6b9d64944ebc6c81421de",
+      "fullName": "roy many",
+      "email": "rmany728@gmail.com",
+      "password": "$2b$10$PoUnPnOH.JcEnWaKciGSi.VuuJ85EV8xVAWiC6gsTq8jN6fUl1l1m",
+      "company": "google",
+      "role": "recruiter",
+      "isVerified": true,
+      "sessionId": "ac3ab0fa-3bcf-49d6-b77e-ed489ec39f68",
+      "onboardingDone": false,
+      "failedLoginAttempts": 0,
+      "lockUntil": null,
+      "passwordHistory": [],
+      "lastActive": "2026-03-03T15:32:17.235Z",
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "confirmationExpiresAt": "2026-03-03T11:37:41.153Z",
+      "createdAt": "2026-03-03T10:37:10.841Z",
+      "updatedAt": "2026-03-03T15:34:25.152Z",
+      "__v": 1,
+      "aiAutoScreening": true,
+      "companyLocation": "",
+      "companyLogo": "",
+      "companySize": "",
+      "companyWebsite": "",
+      "designation": "",
+      "experienceLevel": "",
+      "hiringRoles": [],
+      "industryType": "",
+      "jobType": [],
+      "linkedIn": "",
+      "monthlyVolume": "",
+      "phone": "652145789",
+      "profilePic": "",
+      "workEmail": "",
+      "workMode": []
+    }
+  ]
+}

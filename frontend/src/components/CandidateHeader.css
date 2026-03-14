@@ -1,0 +1,253 @@
+/* ============================================================
+   CandidateHeader — Unified, single source of truth
+   Desktop-first: optimised for 1024px – 1920px+
+   8px spacing scale | Inter font | Zero layout shift
+   ============================================================ */
+
+/* ── Nav Shell ─────────────────────────────────────────────── */
+.ch-nav {
+    flex-shrink: 0;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    padding: 0 clamp(1rem, 2vw, 2rem);
+    background: rgba(13, 17, 23, 0.96);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    /* Ensure header sits above fixed canvas/glow layers on all pages */
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    /* Prevent header from ever triggering horizontal scroll */
+    overflow: hidden;
+}
+
+/* ── Logo ───────────────────────────────────────────────────── */
+.ch-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-shrink: 0;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    /* 8px scale: margin-right pushes nav away from logo */
+    margin-right: 1.5rem;
+}
+
+.ch-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 0 14px rgba(59, 130, 246, 0.35);
+}
+
+.ch-logo-text {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* ── Navigation Links ───────────────────────────────────────── */
+.ch-nav-links {
+    display: flex;
+    align-items: center;
+    /* Grow to fill space between logo and right actions */
+    flex: 1;
+    gap: 0;
+    /* Links are centered in the available space */
+    justify-content: center;
+    min-width: 0;
+}
+
+/* Individual link button */
+.ch-nl {
+    background: none;
+    border: none;
+    /* 8px scale: 6px vertical, 12px horizontal = comfortable touch target */
+    padding: 0.375rem 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #64748b;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+    position: relative;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.pro-badge-mini {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-left: 8px;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+}
+
+.ch-nl:hover {
+    color: #cbd5e1;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.ch-nl.active {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Active underline indicator */
+.ch-nl.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 2px;
+    background: #3b82f6;
+    border-radius: 2px;
+}
+
+/* ── Right Actions ──────────────────────────────────────────── */
+.ch-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    margin-left: 1.5rem;
+}
+
+/* Icon button — 32×32 */
+.ch-ib {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.ch-ib:hover {
+    background: rgba(255, 255, 255, 0.09);
+    color: #fff;
+}
+
+/* Bell notification dot */
+.ch-bell {
+    position: relative;
+}
+
+.ch-bdot {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 6px;
+    height: 6px;
+    background: #ef4444;
+    border-radius: 50%;
+    border: 1.5px solid #0d1117;
+}
+
+/* Avatar */
+.ch-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #fff;
+    border: 2px solid rgba(59, 130, 246, 0.4);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: opacity 0.15s ease;
+    user-select: none;
+}
+
+.ch-avatar:hover {
+    opacity: 0.85;
+    transform: scale(1.05);
+}
+
+.ch-avatar.active {
+    border-color: rgba(59, 130, 246, 0.8);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.45);
+}
+
+.ch-avatar:focus-visible {
+    outline: 2px solid rgba(59, 130, 246, 0.7);
+    outline-offset: 2px;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+/* Below 1400px: shrink nav link font and logo slightly */
+@media (max-width: 1400px) {
+    .ch-nl {
+        font-size: 0.82rem;
+        padding: 0.375rem 0.55rem;
+    }
+}
+
+/* Below 1280px: shrink further */
+@media (max-width: 1280px) {
+    .ch-nl {
+        font-size: 0.76rem;
+        padding: 0.375rem 0.45rem;
+    }
+
+    .ch-logo-text {
+        font-size: 1.1rem;
+    }
+
+    .ch-logo {
+        margin-right: 0.75rem;
+    }
+
+    .ch-nav-right {
+        margin-left: 0.75rem;
+    }
+}
+
+/* Below 1300px: hide "Connect With Recruiter" — too long */
+@media (max-width: 1300px) {
+    .ch-nav-links .ch-nl:last-child {
+        display: none;
+    }
+}
+
+/* Below 1200px: hide nav links entirely */
+@media (max-width: 1200px) {
+    .ch-nav-links {
+        display: none;
+    }
+}

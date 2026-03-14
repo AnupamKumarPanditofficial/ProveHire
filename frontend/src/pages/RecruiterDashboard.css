@@ -1,0 +1,90 @@
+/* 
+   Recruiter OS - Master Layout 
+   Forces a 100vh app-like experience with no outer body scroll.
+*/
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    /* Prevents global scrolling, acts like desktop app */
+}
+
+#root {
+    height: 100%;
+}
+
+.recruiter-os {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--bg-main, #0f1115);
+    color: var(--text-primary, #ffffff);
+    font-family: 'Inter', -apple-system, sans-serif;
+    overflow: hidden;
+}
+
+/* Sidebar Area */
+.recruiter-sidebar-container {
+    width: 260px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border, #2a2d35);
+    background-color: var(--bg-card, #16181d);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main Content Area */
+.recruiter-main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Re-delegate scroll to inner components */
+    background-color: var(--bg-main, #0f1115);
+}
+
+/* Generic Workspace Split Pane Layout */
+.workspace-split-layout {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.workspace-list-pane {
+    width: 320px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border, #2a2d35);
+    background: var(--bg-card, #16181d);
+    display: flex;
+    flex-direction: column;
+}
+
+.workspace-detail-pane {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-main, #0f1115);
+    overflow-y: auto;
+}
+
+/* Scrollbar styling for a native feel */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border, #2a2d35);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color, #4f46e5);
+}

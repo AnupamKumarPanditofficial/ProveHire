@@ -1,0 +1,293 @@
+.adm-login-root {
+    min-height: 100vh;
+    background: #050a14;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── Blobs ──────────────────────────────────────────────────── */
+.adm-blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.adm-blob1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(239, 68, 68, 0.08), transparent 70%);
+    top: -100px;
+    left: -100px;
+}
+
+.adm-blob2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.1), transparent 70%);
+    bottom: -80px;
+    right: -80px;
+}
+
+.adm-blob3 {
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.06), transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ── Card ───────────────────────────────────────────────────── */
+.adm-login-card {
+    position: relative;
+    z-index: 1;
+    background: rgba(10, 16, 30, 0.92);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 24px;
+    padding: 2.8rem 2.5rem 2rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(239, 68, 68, 0.1);
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    animation: cardIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.adm-login-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.4), transparent);
+    border-radius: 24px 24px 0 0;
+}
+
+/* ── Lock ring ──────────────────────────────────────────────── */
+.adm-lock-ring {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: conic-gradient(#ef4444, #f59e0b, #6366f1, #ef4444);
+    animation: lockSpin 4s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.adm-lock-ring-inner {
+    width: 58px;
+    height: 58px;
+    background: #080d1a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.adm-lock-icon {
+    color: #ef4444;
+}
+
+@keyframes lockSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── Text ───────────────────────────────────────────────────── */
+.adm-login-badge {
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    padding: 0.22rem 0.75rem;
+    border-radius: 20px;
+    margin-bottom: 0.25rem;
+}
+
+.adm-login-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #f1f5f9;
+    letter-spacing: -0.3px;
+    text-align: center;
+}
+
+.adm-login-sub {
+    font-size: 0.78rem;
+    color: #475569;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+/* ── Form ───────────────────────────────────────────────────── */
+.adm-login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.adm-error {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.28);
+    color: #f87171;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.6rem 0.85rem;
+    border-radius: 9px;
+}
+
+.adm-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.38rem;
+}
+
+.adm-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #475569;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.adm-input-wrap {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 10px;
+    padding: 0 0.85rem;
+    transition: border-color 0.15s;
+}
+
+.adm-input-wrap:focus-within {
+    border-color: rgba(239, 68, 68, 0.45);
+    background: rgba(239, 68, 68, 0.04);
+}
+
+.adm-input-icon {
+    color: #475569;
+    flex-shrink: 0;
+}
+
+.adm-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0.65rem 0.6rem;
+    color: #e2e8f0;
+    font-size: 0.88rem;
+    font-family: inherit;
+}
+
+.adm-input::placeholder {
+    color: #334155;
+}
+
+.adm-eye-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #475569;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    transition: color 0.15s;
+}
+
+.adm-eye-btn:hover {
+    color: #94a3b8;
+}
+
+.adm-submit-btn {
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    color: #fff;
+    border: none;
+    border-radius: 11px;
+    font-size: 0.87rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+    box-shadow: 0 4px 18px rgba(239, 68, 68, 0.35);
+}
+
+.adm-submit-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(239, 68, 68, 0.5);
+}
+
+.adm-submit-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.adm-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.adm-back-link {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+}
+
+.adm-back-link a {
+    color: #475569;
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.adm-back-link a:hover {
+    color: #94a3b8;
+}

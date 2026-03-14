@@ -1,0 +1,765 @@
+/* ============================================================
+   SkillZone — 3D AI Futuristic Dark Glassmorphism
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Root ────────────────────────────────────────────────────── */
+.sz-root {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #0a0f1e;
+    font-family: 'Inter', sans-serif;
+    color: #e2e8f0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Particle canvas */
+.sz-particles {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Ambient glows */
+.sz-glow {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.sz-glow1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.12), transparent 70%);
+    top: -120px;
+    right: -80px;
+}
+
+.sz-glow2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.09), transparent 70%);
+    bottom: -100px;
+    left: -60px;
+}
+
+.sz-glow3 {
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.06), transparent 70%);
+    top: 40%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
+
+/* ── Navbar ─────────────────────────────────────────────────── */
+.sz-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-shrink: 0;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    background: rgba(10, 15, 30, 0.92);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+}
+
+.sz-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.sz-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow: 0 0 14px rgba(59, 130, 246, 0.4);
+}
+
+.sz-logo-text {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+.sz-nav-links {
+    display: flex;
+    gap: 0.1rem;
+}
+
+.sz-nl {
+    background: none;
+    border: none;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #64748b;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.15s;
+    position: relative;
+}
+
+.sz-nl:hover {
+    color: #cbd5e1;
+}
+
+.sz-nl.active {
+    color: #fff;
+    font-weight: 600;
+}
+
+.sz-nl.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 2px;
+    background: #3b82f6;
+    border-radius: 2px;
+}
+
+.sz-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sz-ib {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.sz-ib:hover {
+    background: rgba(255, 255, 255, 0.09);
+    color: #fff;
+}
+
+.sz-bell {
+    position: relative;
+}
+
+.sz-bdot {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 6px;
+    height: 6px;
+    background: #ef4444;
+    border-radius: 50%;
+    border: 1.5px solid #0a0f1e;
+}
+
+.sz-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #fff;
+    border: 2px solid rgba(59, 130, 246, 0.4);
+    cursor: pointer;
+}
+
+/* ── Content wrapper ────────────────────────────────────────── */
+.sz-content {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: calc(56px + 2.5rem) 1.5rem 3rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99, 102, 241, 0.2) transparent;
+}
+
+/* ── Steps indicator ────────────────────────────────────────── */
+.sz-steps-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 2.5rem;
+}
+
+.sz-step-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.sz-step-dot {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 800;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #475569;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.sz-step-dot.active {
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 0 18px rgba(59, 130, 246, 0.35);
+}
+
+.sz-step-dot.done {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: #34d399;
+}
+
+.sz-step-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #475569;
+    transition: color 0.3s;
+}
+
+.sz-step-label.active {
+    color: #e2e8f0;
+    font-weight: 600;
+}
+
+.sz-step-line {
+    width: 60px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 0 0.6rem;
+    transition: background 0.3s;
+}
+
+.sz-step-line.done {
+    background: rgba(16, 185, 129, 0.3);
+}
+
+/* ── Step Panel ─────────────────────────────────────────────── */
+.sz-step-panel {
+    width: 100%;
+    max-width: 860px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: stepFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes stepFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero badge */
+.sz-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    color: #6366f1;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.22);
+    padding: 0.3rem 0.85rem;
+    border-radius: 20px;
+    margin-bottom: 1.1rem;
+}
+
+.sz-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #fff;
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.3px;
+}
+
+.sz-accent {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.sz-subtitle {
+    font-size: 0.88rem;
+    color: #64748b;
+    text-align: center;
+    line-height: 1.6;
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+}
+
+/* ── Career Cards Grid ──────────────────────────────────────── */
+.sz-career-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    width: 100%;
+    margin-bottom: 2.5rem;
+    perspective: 1000px;
+}
+
+.sz-career-card {
+    position: relative;
+    background: rgba(20, 27, 43, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 2rem 1.5rem 1.75rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.3s ease,
+        border-color 0.2s ease;
+    backdrop-filter: blur(16px);
+    transform-style: preserve-3d;
+    overflow: hidden;
+}
+
+/* Inner shimmer line */
+.sz-career-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+/* Background glow on hover */
+.sz-career-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    opacity: 0;
+    background: radial-gradient(ellipse at 50% 0%, var(--card-color, #3b82f6) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.sz-career-card:hover::after,
+.sz-career-card.selected::after {
+    opacity: 0.07;
+}
+
+.sz-card-selected-ring {
+    position: absolute;
+    inset: -1px;
+    border-radius: 18px;
+    border: 2px solid;
+    pointer-events: none;
+    animation: ringPulse 2s ease-in-out infinite;
+}
+
+@keyframes ringPulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.sz-card-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+}
+
+.sz-career-card:hover .sz-card-icon {
+    transform: translateY(-3px) scale(1.05);
+}
+
+.sz-career-card.selected .sz-card-icon {
+    transform: translateY(-4px) scale(1.08);
+}
+
+.sz-card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    line-height: 1.3;
+}
+
+.sz-card-desc {
+    font-size: 0.75rem;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.sz-card-check {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #fff;
+    margin-top: 0.25rem;
+    animation: checkPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes checkPop {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+/* ── Primary Button ─────────────────────────────────────────── */
+.sz-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2.4rem;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+    letter-spacing: 0.2px;
+}
+
+.sz-btn-primary:hover:not(.disabled):not(.loading) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(59, 130, 246, 0.45);
+}
+
+.sz-btn-primary.disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.sz-btn-start {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35);
+}
+
+.sz-btn-start:hover:not(.disabled):not(.loading) {
+    box-shadow: 0 8px 28px rgba(99, 102, 241, 0.5) !important;
+}
+
+.sz-btn-start.loading {
+    opacity: 0.8;
+    cursor: wait;
+}
+
+.sz-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── Step 2 specific ────────────────────────────────────────── */
+.sz-back-btn {
+    align-self: flex-start;
+    margin-bottom: 1.25rem;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+}
+
+.sz-back-btn:hover {
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #94a3b8;
+}
+
+/* AI message */
+.sz-ai-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: rgba(99, 102, 241, 0.07);
+    border: 1px solid rgba(99, 102, 241, 0.18);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    max-width: 600px;
+    width: 100%;
+    font-size: 0.82rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.sz-ai-message strong {
+    color: #e2e8f0;
+}
+
+.sz-ai-icon {
+    width: 30px;
+    height: 30px;
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #818cf8;
+    flex-shrink: 0;
+}
+
+/* Experience grid */
+.sz-exp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 580px;
+    margin-bottom: 2rem;
+}
+
+.sz-exp-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    background: rgba(20, 27, 43, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+}
+
+.sz-exp-card:hover {
+    border-color: rgba(99, 102, 241, 0.25);
+    background: rgba(20, 27, 43, 0.9);
+    transform: translateY(-2px);
+}
+
+.sz-exp-card.selected {
+    border-color: rgba(99, 102, 241, 0.45);
+    background: rgba(99, 102, 241, 0.06);
+}
+
+.sz-exp-radio {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color 0.2s;
+}
+
+.sz-exp-radio.checked {
+    border-color: #6366f1;
+}
+
+.sz-exp-radio-inner {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    animation: checkPop 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sz-exp-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 0.15rem;
+}
+
+.sz-exp-sub {
+    font-size: 0.7rem;
+    color: #475569;
+}
+
+.sz-exp-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(99, 102, 241, 0.08), transparent 70%);
+    pointer-events: none;
+}
+
+/* Security notes */
+.sz-security-notes {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sz-security-notes span {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.7rem;
+    color: #334155;
+    font-weight: 500;
+}
+
+/* ── Journey Roadmap (FEATURE #2) ──────────────────────────── */
+.sz-journey-milestone {
+    animation: stepFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.sz-journey-milestone:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.sz-journey-milestone:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.sz-journey-milestone:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.sz-journey-milestone:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.sz-journey-milestone:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.sz-journey-milestone:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+.sz-btn-sm {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+}
+
+.sz-role-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+}
+
+.sz-role-btn:hover {
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #94a3b8;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 680px) {
+    .sz-career-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sz-exp-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sz-nav-links {
+        display: none;
+    }
+
+    .sz-title {
+        font-size: 1.8rem;
+    }
+}

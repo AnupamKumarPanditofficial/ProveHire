@@ -1,0 +1,246 @@
+.education-details-container {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header & Progress Bar */
+.onboarding-progress-header {
+    margin-bottom: 2rem;
+}
+
+.progress-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 0.75rem;
+}
+
+.progress-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.progress-main-title {
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.progress-sub-title {
+    color: #60a5fa;
+    /* Blue accent matching design */
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.progress-percent {
+    color: #3b82f6;
+    /* Blue accent */
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.progress-bar-track {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Very subtle track */
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar-fill-25,
+.progress-bar-fill-dynamic {
+    height: 100%;
+    background-color: #3b82f6;
+    border-radius: 4px;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Form Card Setup */
+.education-card {
+    padding: 3rem 4rem;
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.form-header h2 {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.form-header p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+/* Form Fields */
+.education-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    color: #64748b;
+    pointer-events: none;
+    /* Let clicks pass through to input */
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1rem 1rem 1rem 3rem;
+    /* padding-left to clear the absolute icon */
+    color: #0f172a;
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background-color: rgba(59, 130, 246, 0.05);
+}
+
+.form-group input::placeholder {
+    color: #64748b;
+}
+
+/* Select specific styling */
+.select-wrapper {
+    position: relative;
+}
+
+.form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+/* When the select value is empty (the disabled placeholder option) */
+.form-group select.placeholder-active {
+    color: #64748b;
+}
+
+/* Style the dropdown options (browser dependent but provides baseline) */
+.form-group select option {
+    background-color: #1e293b;
+    color: white;
+}
+
+/* Actions Section */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    background: transparent;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.back-btn:hover {
+    color: #94a3b8;
+}
+
+.next-step-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.next-step-btn:hover:not(.disabled) {
+    background-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.next-step-btn.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Responsive constraints */
+@media (max-width: 640px) {
+    .education-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .form-header h2 {
+        font-size: 1.5rem;
+    }
+}

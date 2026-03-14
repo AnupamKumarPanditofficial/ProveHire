@@ -1,0 +1,272 @@
+/* ── Contact Section ─────────────────────────────────────────── */
+.cs-section {
+    padding: 6rem 1.5rem;
+    background: #0a0f1e;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+    scroll-margin-top: 80px;
+}
+
+.cs-section::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.07), transparent 70%);
+    top: -150px;
+    right: -100px;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.cs-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* ── Left ───────────────────────────────────────────────────── */
+.cs-badge {
+    display: inline-block;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: #60a5fa;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    padding: 0.22rem 0.75rem;
+    border-radius: 20px;
+    margin-bottom: 1.1rem;
+}
+
+.cs-heading {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #f1f5f9;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.cs-hl {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cs-desc {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.cs-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.cs-info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.85rem;
+    color: #475569;
+    font-family: 'Inter', sans-serif;
+}
+
+.cs-info-item svg {
+    color: #3b82f6;
+    flex-shrink: 0;
+}
+
+/* ── Right — Card ───────────────────────────────────────────── */
+.cs-form-card {
+    background: rgba(12, 20, 38, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2.25rem;
+    backdrop-filter: blur(18px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    position: relative;
+}
+
+.cs-form-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.35), transparent);
+    border-radius: 20px 20px 0 0;
+}
+
+/* ── Form ───────────────────────────────────────────────────── */
+.cs-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.cs-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.cs-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #475569;
+    letter-spacing: 0.3px;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+}
+
+.cs-input-wrap {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 10px;
+    padding: 0 0.9rem;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.cs-input-wrap.error {
+    border-color: rgba(239, 68, 68, 0.5);
+}
+
+.cs-input-wrap:focus-within {
+    border-color: rgba(59, 130, 246, 0.5);
+    background: rgba(59, 130, 246, 0.04);
+}
+
+.cs-textarea-wrap {
+    padding: 0.7rem 0.9rem;
+    align-items: flex-start;
+}
+
+.cs-fi {
+    color: #334155;
+    flex-shrink: 0;
+    margin-right: 0.55rem;
+}
+
+.cs-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0.65rem 0;
+    color: #e2e8f0;
+    font-size: 0.88rem;
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+}
+
+.cs-input::placeholder {
+    color: #334155;
+}
+
+.cs-textarea {
+    resize: none;
+}
+
+.cs-error {
+    font-size: 0.7rem;
+    color: #f87171;
+    margin-top: 0.1rem;
+}
+
+.cs-submit-btn {
+    margin-top: 0.5rem;
+    padding: 0.8rem;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: #fff;
+    border: none;
+    border-radius: 11px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+    box-shadow: 0 4px 18px rgba(59, 130, 246, 0.35);
+}
+
+.cs-submit-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.5);
+}
+
+.cs-submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.cs-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: csSpin 0.65s linear infinite;
+    display: inline-block;
+}
+
+@keyframes csSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── Success state ──────────────────────────────────────────── */
+.cs-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 2.5rem 1rem;
+    text-align: center;
+}
+
+.cs-success-icon {
+    color: #10b981;
+}
+
+.cs-success h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #f1f5f9;
+    font-family: 'Inter', sans-serif;
+}
+
+.cs-success p {
+    font-size: 0.85rem;
+    color: #64748b;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .cs-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .cs-heading {
+        font-size: 1.9rem;
+    }
+}

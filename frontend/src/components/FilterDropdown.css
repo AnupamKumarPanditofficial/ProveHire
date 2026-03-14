@@ -1,0 +1,129 @@
+/* ============================================================
+   FilterDropdown — shared dropdown chip for filter bars
+   ============================================================ */
+
+.fd-wrap {
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* ── Trigger chip ───────────────────────────────────────── */
+.fd-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.42rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #94a3b8;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+    user-select: none;
+}
+
+.fd-icon {
+    display: flex;
+    align-items: center;
+    color: #3b82f6;
+    opacity: 0.9;
+}
+
+.fd-chip:hover {
+    border-color: rgba(59, 130, 246, 0.35);
+    background: rgba(59, 130, 246, 0.06);
+    color: #e2e8f0;
+}
+
+/* Active chip — a filter is SELECTED (not "All") */
+.fd-filtered .fd-chip {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.35);
+    color: #60a5fa;
+}
+
+/* "active" prop — externally driven highlight (ConnectRecruiter profile chip) */
+.fd-active .fd-chip {
+    background: rgba(59, 130, 246, 0.12);
+    border-color: rgba(59, 130, 246, 0.4);
+    color: #60a5fa;
+}
+
+/* Chevron rotation */
+.fd-chevron {
+    transition: transform 0.18s ease;
+    flex-shrink: 0;
+}
+
+.fd-chevron.open {
+    transform: rotate(180deg);
+}
+
+/* ── Dropdown Menu ──────────────────────────────────────── */
+.fd-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 160px;
+    background: #1a2233;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    overflow: hidden;
+    padding: 4px;
+    animation: fdMenuOpen 0.14s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fdMenuOpen {
+    from {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ── Option button ──────────────────────────────────────── */
+.fd-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-family: inherit;
+    color: #94a3b8;
+    background: none;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.1s, color 0.1s;
+    gap: 0.5rem;
+}
+
+.fd-option:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #e2e8f0;
+}
+
+.fd-option.selected {
+    color: #60a5fa;
+    background: rgba(59, 130, 246, 0.08);
+    font-weight: 600;
+}
+
+.fd-check {
+    color: #3b82f6;
+    flex-shrink: 0;
+}
