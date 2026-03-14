@@ -1,4 +1,4 @@
-﻿const Recruiter = require('../models/Recruiter');
+const Recruiter = require('../models/Recruiter');
 const OTP = require('../models/OTP');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
@@ -97,7 +97,7 @@ const verifyRecruiterOTP = async (req, res) => {
         res.cookie('recruiterRefreshToken', refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Lax',
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
             maxAge: 7 * 24 * 60 * 60 * 1000,
         });
 
@@ -173,7 +173,7 @@ const loginRecruiter = async (req, res) => {
         res.cookie('recruiterRefreshToken', refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Lax',
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
             maxAge: 7 * 24 * 60 * 60 * 1000,
         });
 
