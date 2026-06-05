@@ -11,7 +11,7 @@
 [![Gemini AI](https://img.shields.io/badge/Google-Gemini_2.5_Pro-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
 [![Vite](https://img.shields.io/badge/Vite-8.0-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
 
-> **Live Demo:** 🚀 [https://provahire.vercel.app](https://provahire.vercel.app) _backend -> https://provehire.onrender.com
+> **Live Demo:** 🚀 [Live Link](https://frontend-zeta-nine-93.vercel.app/) 
 
 </div>
 
