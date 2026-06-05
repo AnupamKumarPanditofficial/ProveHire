@@ -11,7 +11,9 @@
 [![Gemini AI](https://img.shields.io/badge/Google-Gemini_2.5_Pro-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
 [![Vite](https://img.shields.io/badge/Vite-8.0-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
 
-> **Live Demo:** 🚀 [Live Link](https://frontend-zeta-nine-93.vercel.app/) 
+> **Live Demo:** 🚀 [Live Link](https://frontend-zeta-nine-93.vercel.app/)
+> <img width="1318" height="576" alt="{3FF60D19-53A9-40F4-89EA-0BF4E7662239}" src="https://github.com/user-attachments/assets/17d73f2f-6e76-466e-b33b-09538ab2fe5b" />
+
 
 </div>
 
